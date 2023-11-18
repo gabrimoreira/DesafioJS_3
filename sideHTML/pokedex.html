@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/pokedex.css">
+    <link rel="shortcut icon" href="../images/pokeball_icon.png" type="image/x-icon">
+    <title>Pokedex</title>
+</head>
+<body>
+    <section class="main-container">
+        <h1 class="titulo">Escolha os seus Pokemons!</h1>
+        <div class="cards">
+            <!--Cards serão adicionados aqui dinamicamente pelo js-->
+        </div>
+
+        <form action="" class="cadastro">
+            <label for="Time" class="time"> Nome do seu time: </label>
+            <input type="text" class = "time" id="time_input" name="Time" placeholder="Meu time" required>
+            <button id="btn-formulario" type="button" onclick="salvarTime()">
+                Confirmar
+            </button>
+        </form>
+    </section>
+    <script src="../script/script.js"></script>
+</body>
+</html>
