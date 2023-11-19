@@ -58,6 +58,7 @@ function cardClick(card, pokemon) {
       if (resposta) {
         const btnFormulario = document.getElementById('btn-formulario');
         btnFormulario.scrollIntoView({ behavior: 'smooth' });
+        card.classList.toggle('clicado');
       }
       else{
         card.classList.toggle('clicado');
