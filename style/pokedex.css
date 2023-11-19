@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'pokemon';
+    src: url('/fonts/pokemon/Pokemon\ Solid.ttf');
+}
+.main-container{
+    background-color: rgb(140, 230, 230);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.titulo{
+    padding: 10px;
+    font-family: 'pokemon';
+    color: rgb(77, 84, 84);
+    font-size: 40px;
+}
+.cards{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+.card{
+    background-color: rgb(202, 210, 216);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    height: 300px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.card:hover .card-status{
+    opacity: 0.8;
+    visibility: visible;
+
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.2);
+  }
+.card.clicado{
+    background-color: rgb(36, 219, 36);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    height: 300px;
+    margin: 10px;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.2);
+}
+.card-img-pokemon{
+    width: 200px;
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.card-status {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9); 
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s ease-in-out;
+  }
+  .card-status ul {
+    list-style: none; 
+    padding: 10px; 
+  }
+   
+  .card-status p {
+    margin: 10px;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+  }
+  
+  .card-status li {
+    padding: 5px;
+    font-size: 15px; 
+  }
+  
+.card-title{
+    font-size: 24px;
+    font-family: fantasy, 'Arial';
+    text-transform: capitalize;
+    color: rgb(206, 5, 156);
+    
+}
+.card-text{
+    margin-right: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-left: 10px;
+    padding-top: 5px;
+    font-size: 20px;
+}
+.card-status{
+    opacity: 0;
+}
+.cadastro {
+    background-color: rgb(66, 63, 63);
+    padding: 20px;
+    width: 100%; 
+    margin-top: auto; 
+    text-align: center;
+}
+
+.time {
+    color: white; 
+    font-size: 18px;
+    margin-bottom: 10px; 
+}
+
+#time_input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    margin: 10px;
+}
+
+#btn-formulario {
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    color: rgb(206, 169, 169);
+    background-color: rgb(66, 63, 63);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  #btn-formulario:hover {
+    transform: scale(1.03);
+    background-color: rgb(228, 228, 10);
+    color: black;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); 
+  }
+  
