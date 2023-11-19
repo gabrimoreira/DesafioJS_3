@@ -1,47 +1,101 @@
 const pokemons = [];
 const pokemonsClicados = [];
 
+//Troquei a lógica de lidar com promessas para usar async function
+
 async function fetchPokemonData() {
-    for (let i = 1; i <= 151; i++) {
-      //recebe o dado e não a promessa
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-      const pokemonData = await res.json();
-      pokemons.push(pokemonData);
-    }
-  
-    console.log(pokemons);
-  
-    const cardsContainer = document.querySelector('.cards');
-  
-    pokemons.forEach(pokemon => {
-      const card = criaPokemonCard(pokemon);
-      card.addEventListener('click', () => cardClick(card, pokemon));
-      cardsContainer.appendChild(card);
-    });
+  for (let i = 1; i <= 151; i++) {
+    //recebe o dado e não a promessa
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+    const pokemonData = await res.json();
+    pokemons.push(pokemonData);
   }
-  
-  function criaPokemonCard(pokemon) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-  
-    card.innerHTML = `
-      <img src="${pokemon.sprites.front_default}" class="card-img-pokemon" alt="${pokemon.name}">
-      <div class="card-body">
-        <h5 class="card-title">${pokemon.name}</h5>
-        <p class="card-text">ID: ${pokemon.id}</p>
-        <p class="card-text">Type: ${pokemon.types[0].type.name}</p>
-      </div>
-      <div class="card-back">
+
+  console.log(pokemons);
+
+  const cardsContainer = document.querySelector('.cards');
+
+  pokemons.forEach(pokemon => {
+    const card = criaPokemonCard(pokemon);
+    card.addEventListener('click', () => cardClick(card, pokemon));
+    cardsContainer.appendChild(card);
+  });
+}
+
+function criaPokemonCard(pokemon) {
+  const card = document.createElement('div');
+  card.classList.add('card');
+
+  card.innerHTML = `
+    <img src="${pokemon.sprites.front_default}" class="card-img-pokemon" alt="${pokemon.name}">
+    <div class="card-body">
+      <h5 class="card-title">${pokemon.name}</h5>
+      <p class="card-text">ID: ${pokemon.id}</p>
+      <p class="card-text">Type: ${pokemon.types[0].type.name}</p>
+    </div>
+    <div class = "card-status">
       <p>Status:</p>
       <ul>
         <li>HP: ${pokemon.stats[0].base_stat}</li>
         <li>Attack: ${pokemon.stats[1].base_stat}</li>
         <li>Defense: ${pokemon.stats[2].base_stat}</li>
-        <!-- Adicione mais status conforme necessário -->
       </ul>
     </div>
-    `;
-  
-    return card;
+  `;
+
+  return card;
+}
+
+function cardClick(card, pokemon) {
+  card.classList.toggle('clicado');
+  const isClicado = card.classList.contains('clicado');
+
+  if (isClicado) {
+    if (pokemonsClicados.length < 6) {
+      pokemonsClicados.push(pokemon);
+    } else {
+      const resposta = confirm('Você atingiu o limite de 6 Pokémons. Deseja criar o seu time?');
+      if (resposta) {
+        const btnFormulario = document.getElementById('btn-formulario');
+        btnFormulario.scrollIntoView({ behavior: 'smooth' });
+      }
+      else{
+        card.classList.toggle('clicado');
+      }
+    }
+  } else {
+    const index = pokemonsClicados.indexOf(pokemon);
+    if (index !== -1) {
+      pokemonsClicados.splice(index, 1);
+    }
   }
-  
+
+  console.log('Pokémons Clicados:', pokemonsClicados);
+}
+
+
+function salvarTime() {
+  if (pokemonsClicados.length >= 1 && pokemonsClicados.length <= 6) {
+    const nomeTime = document.getElementById('time_input').value;
+
+    // Verifica se um nome foi fornecido, desconsiderando espaços em branco
+    if (nomeTime.trim() === '') {
+      alert('Por favor, forneça um nome para o seu time.');
+      return;
+    }
+
+    const parametrosURL = new URLSearchParams();
+    parametrosURL.append('nome', nomeTime);
+
+    pokemonsClicados.forEach((pokemon, index) => {
+      parametrosURL.append(`pokemon${index + 1}`, pokemon.name);
+    });
+
+    window.location.href = `times.html?${parametrosURL.toString()}`;
+  } else {
+    alert('Selecione entre 1 e 6 Pokémon para salvar o time.');
+  }
+}
+
+// Chamada da função para carregar os dados dos Pokémon
+fetchPokemonData();
