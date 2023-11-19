@@ -13,8 +13,10 @@
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
-    text-align: center;
-    position: fixed; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1{
@@ -24,12 +26,8 @@ h1{
     white-space: nowrap;
     overflow: hidden;
     animation:typing 2s steps(21);
-    margin: auto;
-
-    position: fixed; 
-    top: 20%; 
-    left: 50%; 
-    transform: translateX(-50%); 
+    margin-bottom: 20vh;
+    text-align: center;
 }
 
 @keyframes typing{
@@ -39,25 +37,22 @@ h1{
 }
 
 .btn_inicial{
-    width: 150px;
-    height: 40px;
+    width: 200px;
+    height: 60px;
     padding: 10px;
     border-radius: 5px;
     border-color: transparent;
     background-color: yellow;
-    text-align: center;
-    position: fixed; 
-    top: 40%; 
-    left: 50%; 
-    transform: translateX(-50%);
     font-size: 15px; 
     font-family: Georgia, 'Times New Roman', Times, serif;
     cursor: pointer;
     transition: all 0.4s linear;
+    margin-bottom: 20vh;
 }
 .btn_inicial a{
     text-decoration: none;
     color: rgb(138, 128, 128);
+    
 }
 
 .btn_inicial:hover{
@@ -68,38 +63,27 @@ h1{
 @media (max-width:350px){
     h1{
         font-family: 'pokemon';
-        font-size: 20px;
+        font-size: 100%;
         width: 21ch;
         white-space: nowrap;
         overflow: hidden;
         animation:typing 2s steps(21);
-        margin: auto;
-    
-        position: fixed; 
-        top: 20%; 
-        left: 50%; 
-        transform: translateX(-50%); 
+        margin-bottom: 20vh;
+        text-align: center;
     }
-}
-
-@media (max-height: 360px){
+    
     .btn_inicial{
-        width: 150px;
-        height: 40px;
+        width: 100%;
+        height: 60px;
         padding: 10px;
         border-radius: 5px;
         border-color: transparent;
         background-color: yellow;
-        text-align: center;
-        position: fixed; 
-        top: 40%; 
-        left: 50%; 
-        transform: translateX(-50%);
         font-size: 15px; 
         font-family: Georgia, 'Times New Roman', Times, serif;
         cursor: pointer;
         transition: all 0.4s linear;
-        margin-top: 40px;
+        margin-bottom: 20vh;
+        font-size: 10px;
     }
 }
-
