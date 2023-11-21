@@ -41,6 +41,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    border-radius: 10px;
 }
 .card:hover .card-status{
     opacity: 0.8;
