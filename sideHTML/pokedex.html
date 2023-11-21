@@ -14,9 +14,10 @@
             <!--Cards serão adicionados aqui dinamicamente pelo js-->
         </div>
 
-        <form action="/times" class="cadastro">
+        <form action="../sideHTML/times.html" class="cadastro" method="get">
             <label for="Time" class="time"> Nome do seu time: </label>
-            <input type="text" class = "time" id="time_input" name="Time" placeholder="Meu time" required>
+            <input type="text" class = "time" id="time_input" placeholder="Meu time" required>
+            
             <button id="btn-formulario" type="button" onclick="salvarTime()">
                 Confirmar
             </button>

@@ -79,17 +79,11 @@ function salvarTime() {
   if (pokemonsClicados.length >= 1 && pokemonsClicados.length <= 6) {
     const nomeTime = document.getElementById('time_input').value;
 
-    // Verifica se um nome foi fornecido, desconsiderando espaços em branco
-    if (nomeTime.trim() === '') {
-      alert('Por favor, forneça um nome para o seu time.');
-      return;
-    }
-
     const parametrosURL = new URLSearchParams();
     parametrosURL.append('nome', nomeTime);
 
     pokemonsClicados.forEach((pokemon, index) => {
-      parametrosURL.append(`pokemon${index + 1}`, pokemon.name);
+      parametrosURL.append(`pokemon${index + 1}`, pokemon.id);
     });
 
     window.location.href = `times.html?${parametrosURL.toString()}`;
