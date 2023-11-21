@@ -4,7 +4,8 @@ const params = urlObj.searchParams*/
 
 const params = new URLSearchParams(window.location.search);
 nomeTime = params.get('nome');
-
+titulo = document.querySelector('.titulo');
+titulo.textContent += `- ${nomeTime} !`;
 function verParametros(){
     const ids_pokemons = [];
     for(let i = 1; i <= 6; i++){
