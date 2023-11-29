@@ -5,7 +5,7 @@
 }
 @font-face {
     font-family: 'pokemon';
-    src: url('/fonts/pokemon/Pokemon\ Solid.ttf');
+    src: url('../fonts/Pokemon\ Solid.ttf');
 }
 .main-container{
     background-color: rgb(140, 230, 230);

@@ -1,26 +1,30 @@
 const pokemons = [];
 const pokemonsClicados = [];
-
-//Troquei a lógica de lidar com promessas para usar async function
+//Troquei a lógica de fazer várias requisições para fazer apenas uma
 
 async function fetchPokemonData() {
-  for (let i = 1; i <= 151; i++) {
-    //recebe o dado e não a promessa
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-    const pokemonData = await res.json();
-    pokemons.push(pokemonData);
-  }
+  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=150');
+  const data = await res.json();
+  const pokemonList = data.results;
+  console.log(pokemonList)
+  const pokemonPromises = pokemonList.map(async (pokemon) => {
+    const res = await fetch(pokemon.url);
+    return res.json();
+  });
 
-  console.log(pokemons);
+  const pokemonsData = await Promise.all(pokemonPromises);
+
+  console.log(pokemonsData);
 
   const cardsContainer = document.querySelector('.cards');
 
-  pokemons.forEach(pokemon => {
+  pokemonsData.forEach((pokemon) => {
     const card = criaPokemonCard(pokemon);
     card.addEventListener('click', () => cardClick(card, pokemon));
     cardsContainer.appendChild(card);
   });
 }
+
 
 function criaPokemonCard(pokemon) {
   const card = document.createElement('div');
