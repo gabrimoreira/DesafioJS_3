@@ -83,18 +83,19 @@ function salvarTime() {
   if (pokemonsClicados.length >= 1 && pokemonsClicados.length <= 6) {
     const nomeTime = document.getElementById('time_input').value;
 
-    const parametrosURL = new URLSearchParams();
-    parametrosURL.append('nome', nomeTime);
+    const timeData = {
+      nome: nomeTime,
+      pokemons: pokemonsClicados.map(pokemon => pokemon.id)
+    };
 
-    pokemonsClicados.forEach((pokemon, index) => {
-      parametrosURL.append(`pokemon${index + 1}`, pokemon.id);
-    });
+    localStorage.setItem('pokemonTeam', JSON.stringify(timeData));
 
-    window.location.href = `times.html?${parametrosURL.toString()}`;
+    window.location.href = 'times.html';
   } else {
     alert('Selecione entre 1 e 6 Pokémon para salvar o time.');
   }
 }
+
 
 // Chamada da função para carregar os dados dos Pokémon
 fetchPokemonData();
