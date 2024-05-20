@@ -9,10 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     titulo.textContent += `- ${nomeTime} !`;
 
     pokemonIds.forEach(id => fetchPokemonId(id));
+
+    // Limpar localStorage depois de carregar os dados
+    localStorage.removeItem('pokemonTeam');
   } else {
     console.error('No team data found in localStorage');
   }
 });
+
 
 async function fetchPokemonId(id) {
   if (id) {
